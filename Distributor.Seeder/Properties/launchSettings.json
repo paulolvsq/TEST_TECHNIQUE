@@ -1,0 +1,32 @@
+{
+  "profiles": {
+    "Seed small database": {
+      "commandName": "Project",
+      "commandLineArgs": "seed --small",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    "Seed large database": {
+      "commandName": "Project",
+      "commandLineArgs": "seed --large",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    "Reset small database": {
+      "commandName": "Project",
+      "commandLineArgs": "reset --small",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    "Reset large database": {
+      "commandName": "Project",
+      "commandLineArgs": "reset --large",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

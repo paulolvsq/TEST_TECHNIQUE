@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "Distributor.Benchmarks": {
+      "commandName": "Project",
+      "commandLineArgs": "--filter *"
+    },
+    "Distributor.Benchmarks Evaluate": {
+      "commandName": "Project",
+      "commandLineArgs": "--filter *EvaluateCostBenchmarks*"
+    },
+    "Distributor.Benchmarks Plan": {
+      "commandName": "Project",
+      "commandLineArgs": "--filter *PlanDistributionBenchmarks*"
+    }
+  }
+}

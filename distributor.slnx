@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/Items/">
+    <File Path=".config/dotnet-tools.json" />
+    <File Path=".csharpierrc.yml" />
+    <File Path=".editorconfig" />
+    <File Path="README.fr.md" />
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="Distributor.Benchmarks/Distributor.Benchmarks.csproj" />
+  <Project Path="Distributor.Seeder/Distributor.Seeder.csproj" />
+  <Project Path="Distributor.Tests/Distributor.Tests.csproj" />
+  <Project Path="Distributor/Distributor.csproj" />
+</Solution>

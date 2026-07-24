@@ -1,0 +1,81 @@
+{
+  "profiles": {
+    "Help": {
+      "commandName": "Project",
+      "commandLineArgs": "--help",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    "Evaluate scenarios: Help": {
+      "commandName": "Project",
+      "commandLineArgs": "evaluate --help",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    "Evaluate scenarios: 2026 base scenario only": {
+      "commandName": "Project",
+      "commandLineArgs": "evaluate --start 2026-01 --end 2026-12",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    "Evaluate scenarios: 2026 scenarios 1 3 5": {
+      "commandName": "Project",
+      "commandLineArgs": "evaluate --start 2026-01 --end 2026-12 --scenarios 1 3 5",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    "Evaluate scenarios: 2026 all scenarios": {
+      "commandName": "Project",
+      "commandLineArgs": "evaluate --start 2026-01 --end 2026-12 --scenarios 1 2 3 4 5 6 7 8 9",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    "Evaluate scenarios: 2026 Q1 base scenario only": {
+      "commandName": "Project",
+      "commandLineArgs": "evaluate --start 2026-01 --end 2026-03",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    "Evaluate scenarios: 2026 Q1 scenarios 1 3 5": {
+      "commandName": "Project",
+      "commandLineArgs": "evaluate --start 2026-01 --end 2026-03 --scenarios 1 3 5",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    "Evaluate scenarios: 2026 Q1 all scenarios": {
+      "commandName": "Project",
+      "commandLineArgs": "evaluate --start 2026-01 --end 2026-03 --scenarios 1 2 3 4 5 6 7 8 9",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    "Plan distribution: Help": {
+      "commandName": "Project",
+      "commandLineArgs": "plan --help",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    "Plan distribution: 2026": {
+      "commandName": "Project",
+      "commandLineArgs": "plan --start 2026-01 --end 2026-12",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    "Plan distribution: 2026 Q1": {
+      "commandName": "Project",
+      "commandLineArgs": "plan --start 2026-01 --end 2026-03",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
