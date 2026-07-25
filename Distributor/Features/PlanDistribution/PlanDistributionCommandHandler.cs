@@ -73,7 +73,7 @@ public sealed class PlanDistributionCommandHandler : IRequestHandler<PlanDistrib
             // Le solveur nous retourne directement les entités Shipment
             var solvedShipments = _solver.Solve(period);
             var shipmentResults = new List<ShipmentResult>(solvedShipments.Count);
-            var periodTotalCost = 0m;
+            var periodTotalCost = 0m; // Valeur 0 explicite
 
             // Indexation des coûts unitaires de la période pour un accès O(1)
             var routeCosts = period.Costs.ToDictionary(
