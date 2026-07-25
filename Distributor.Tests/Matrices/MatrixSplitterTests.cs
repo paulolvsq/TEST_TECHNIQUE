@@ -74,4 +74,35 @@ public sealed class MatrixSplitterTests
             }
         }
     }
+
+    [Fact]
+    public void Split_WhenSizeIsOne_TerminatesInsteadOfLoopingForever()
+    {
+	var splitter = new MatrixSplitter();
+	var matrix = Matrix<double>.Build.Dense(3, 3);
+	
+	// avec size == 1, le pas column += size - 1 devient column += 0
+	// cela ne fait jamais progresser la boucle et provoque des boucles infinies sur les colonnes de la matrice
+	// je fais le choix de lancer le test en bornant le temps d'attente
+	// pour ne pas bloquer indéfiniment le lancement de tous les tests
+	var task = Task.Run(() => splitter.Split(matrix, 1));
+	var completedInTime = task.Wait(TimeSpan.FromSeconds(2));
+
+	completedInTime.ShouldBeTrue(
+	    "Split(matrix, 1) did not finish within the allotted time: probable infinite loop."
+	);
+
+	// bonus : une fois qu'on sait que ça termine, on vérifie aussi que le résultat est correct — avec size == 1
+	// chaque cellule doit former son propre span 1x1.
+	var spans = task.Result;
+
+	spans.Length.ShouldBe(matrix.RowCount * matrix.ColumnCount);
+
+	foreach (var span in spans)
+	{
+	    span.RowCount.ShouldBe(1);
+	    span.ColumnCount.ShouldBe(1);
+	}
+    }
+    
 }

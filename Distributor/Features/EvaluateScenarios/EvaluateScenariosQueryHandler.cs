@@ -78,14 +78,16 @@ public sealed class EvaluateScenariosQueryHandler : IRequestHandler<EvaluateScen
 
     private async Task<List<Warehouse>> GetWarehousesAsync(List<Period> periods, CancellationToken token)
     {
-        var ids = periods.SelectMany(period => period.Costs).Select(cost => cost.WarehouseId);
+	// correction : ajout de Distinct
+        var ids = periods.SelectMany(period => period.Costs).Select(cost => cost.WarehouseId).Distinct();
 
         return await _warehouseRepository.GetWarehousesAsync(ids, token).ConfigureAwait(false);
     }
 
     private async Task<List<Store>> GetStoresAsync(List<Period> periods, CancellationToken token)
     {
-        var ids = periods.SelectMany(period => period.Costs).Select(cost => cost.StoreId);
+	// correction : ajout de Distinct
+	var ids = periods.SelectMany(period => period.Costs).Select(cost => cost.StoreId).Distinct();
 
         return await _storeRepository.GetStoresAsync(ids, token).ConfigureAwait(false);
     }
@@ -127,10 +129,15 @@ public sealed class EvaluateScenariosQueryHandler : IRequestHandler<EvaluateScen
             _ => new List<ScenarioPeriodResult>(periods.Count)
         );
 
-        var costMatrix = _matrixFactory.BuildCostMatrix(warehouses, stores, periods[0].Costs);
+	// correction : suppression de la déclaration de costMatrix ici
+        //var costMatrix = _matrixFactory.BuildCostMatrix(warehouses, stores, periods[0].Costs);
 
         foreach (var period in periods)
         {
+
+	    // correction : déclaration dans la boucle de la matrice de coûts pour prendre en compte les variations
+	    // de coûts spécifiques à la période en cours
+	    var costMatrix = _matrixFactory.BuildCostMatrix(warehouses, stores, period.Costs);
             var adjustedDemand = _matrixFactory.BuildAdjustedDemandMatrix(stores, period.Demands, scenarios);
 
             var product = await _matrixMultiplier

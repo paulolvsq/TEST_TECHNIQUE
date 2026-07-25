@@ -8,7 +8,8 @@ public sealed class MatrixMultiplicationState
 
     public int IncrementCompletedCount()
     {
-        return _completedCount++;
+	// correction : opération atomique pour incrémenter le compteur
+        return Interlocked.Increment(ref _completedCount);
     }
 
     public int GetCompletedCount()

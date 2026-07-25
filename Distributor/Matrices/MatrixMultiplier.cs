@@ -19,7 +19,7 @@ public sealed class MatrixMultiplier : IMatrixMultiplier
         _spanMultiplier = spanMultiplier;
     }
 
-    // décalaration async de la méthode
+    // déclaration async de la méthode
     public async Task<Matrix<T>> MultiplyAsync<T>(
         Matrix<T> left,
         Matrix<T> right,

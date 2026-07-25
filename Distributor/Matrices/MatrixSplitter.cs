@@ -22,7 +22,8 @@ public sealed class MatrixSplitter : IMatrixSplitter
     {
         for (var row = 0; row < matrix.RowCount; row += size)
         {
-            for (var column = 0; column < matrix.ColumnCount; column += size - 1)
+	    // correction : remplacer size - 1 par size
+            for (var column = 0; column < matrix.ColumnCount; column += size)
             {
                 var rowCount = Math.Min(size, matrix.RowCount - row);
                 var columnCount = Math.Min(size, matrix.ColumnCount - column);

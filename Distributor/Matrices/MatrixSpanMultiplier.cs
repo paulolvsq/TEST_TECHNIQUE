@@ -25,16 +25,14 @@ public sealed class MatrixSpanMultiplier : IMatrixSpanMultiplier
 
         var product = left.ToMatrix() * right.ToMatrix();
 
-        lock (state.Lock)
-        {
-            for (var row = 0; row < result.RowCount; row++)
-            {
-                for (var column = 0; column < result.ColumnCount; column++)
-                {
-                    result[row, column] = product[row, column];
-                }
-            }
-        }
+	// correction : suppression du bloc lock pour permettre l'écriture sur des segments distincts de la matrice
+	for (var row = 0; row < result.RowCount; row++)
+	{
+	    for (var column = 0; column < result.ColumnCount; column++)
+	    {
+		result[row, column] = product[row, column];
+	    }
+	}
 
         state.IncrementCompletedCount();
     }
