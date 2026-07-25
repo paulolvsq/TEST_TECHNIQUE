@@ -36,13 +36,15 @@ public sealed class ScenarioMatrixFactory : IScenarioMatrixFactory
     {
         var warehouseIndices = BuildIndicesDictionary(warehouses, warehouse => warehouse.Id);
         var storeIndices = BuildIndicesDictionary(stores, store => store.Id);
-        var matrix = Matrix<double>.Build.Dense(warehouses.Count, stores.Count);
+	// correction : initialisation avec l'infini à la place de 0.0 par défaut
+        var matrix = Matrix<double>.Build.Dense(warehouses.Count, stores.Count, double.PositiveInfinity);
 
         foreach (var routeCost in routeCosts)
         {
             var warehouseIndex = warehouseIndices[routeCost.WarehouseId];
             var storeIndex = storeIndices[routeCost.StoreId];
-            matrix[storeIndex, warehouseIndex] = routeCost.UnitCost;
+	    // correction : inversion des indices
+            matrix[warehouseIndex, storeIndex] = routeCost.UnitCost;
         }
 
         return matrix;
@@ -105,7 +107,8 @@ public sealed class ScenarioMatrixFactory : IScenarioMatrixFactory
                     out var multiplier
                 )
                     ? multiplier
-                    : 0.0;
+		    // correction : multiplication par 1.0 au lieu de 0.0 
+                    : 1.0;
             }
         }
 
