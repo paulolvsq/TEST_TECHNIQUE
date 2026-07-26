@@ -73,7 +73,8 @@ public sealed class EvaluateScenariosQueryHandler : IRequestHandler<EvaluateScen
             throw new InvalidOperationException("No periods found in the specified range.");
         }
 
-        return periods;
+	// tri par ordre chronologique des périodes qu'on va retourner
+        return periods.OrderBy(period => period.Year).ThenBy(period => period.Month).ToList();
     }
 
     private async Task<List<Warehouse>> GetWarehousesAsync(List<Period> periods, CancellationToken token)
